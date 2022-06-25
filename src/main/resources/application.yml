@@ -1,0 +1,21 @@
+server:
+  port: 8080
+
+spring:
+  profiles:
+    active: ${profile}
+  application:
+    name: fortune
+
+  mvc:
+    pathmatch:
+      matching-strategy: ant_path_matcher
+
+  datasource:
+    primary:
+      type: com.zaxxer.hikari.HikariDataSource
+      jdbc-url: jdbc:mysql://127.0.0.1:3306/fortune?useUnicode=true&characterEncoding=utf8&useSSL=false&useLegacyDatetimeCode=false&serverTimezone=UTC&createDatabaseIfNotExist=true
+      username: root
+      password: HONGjinfeng12
+  jpa:
+    database-platform: org.hibernate.dialect.MySQL57Dialect
