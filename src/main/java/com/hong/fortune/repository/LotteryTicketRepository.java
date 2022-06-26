@@ -1,9 +1,11 @@
 package com.hong.fortune.repository;
 
-import com.hong.fortune.repository.domin.LotteryTicket;
+import com.hong.fortune.repository.domain.LotteryTicket;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 import org.springframework.stereotype.Repository;
+
+import java.util.Optional;
 
 /**
  * 大乐透彩票
@@ -12,4 +14,12 @@ import org.springframework.stereotype.Repository;
  */
 @Repository
 public interface LotteryTicketRepository extends JpaRepository<LotteryTicket, Long>, JpaSpecificationExecutor<LotteryTicket> {
+
+    /**
+     * 通过 期号 查询
+     *
+     * @param issue 期号
+     * @return 详情
+     */
+    Optional<LotteryTicket> findByIssue(String issue);
 }

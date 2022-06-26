@@ -14,14 +14,14 @@ import java.time.Instant;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class LotteryTicketDTO {
-    private Long id;
+public class LotteryGovDTO {
     private String issue;
-    private Boolean isFilling;
-    private String level;
-    private Integer bonus;
-    private Integer generationType;
-    private Integer status;
+    private String firstNumber;
+    private String secondNumber;
+    private String thirdNumber;
+    private String fourthNumber;
+    private String fifthNumber;
+    private String sixthNumber;
+    private String seventhNumber;
     private Instant gmtLottery;
-    private Instant gmtCreate;
 }

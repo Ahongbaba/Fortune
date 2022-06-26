@@ -1,10 +1,12 @@
-package com.hong.fortune.repository.domin;
+package com.hong.fortune.repository.domain;
 
 import lombok.Data;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import java.io.Serializable;
+import java.time.Instant;
 
 /**
  * 大乐透随机号码表
@@ -13,8 +15,8 @@ import java.io.Serializable;
  */
 @Data
 @Entity
-@Table(name = "lottery_random_number")
-public class LotteryRandomNumber implements Serializable {
+@Table(name = "lottery_number")
+public class LotteryNumber implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
@@ -26,35 +28,54 @@ public class LotteryRandomNumber implements Serializable {
     /**
      * 彩票ID
      */
-    @NotNull(message = "must not be null")
     @Column(name = "lottery_ticket_id")
     private Long lotteryTicketId;
 
+    /**
+     * 期号
+     */
+    @NotNull(message = "must not be null")
+    @Size(max = 64)
+    @Column(name = "issue")
+    private String issue;
+
     @NotNull(message = "must not be null")
     @Column(name = "first_number")
-    private Integer firstNumber;
+    private String firstNumber;
 
     @NotNull(message = "must not be null")
     @Column(name = "second_number")
-    private Integer secondNumber;
+    private String secondNumber;
 
     @NotNull(message = "must not be null")
     @Column(name = "third_number")
-    private Integer thirdNumber;
+    private String thirdNumber;
 
     @NotNull(message = "must not be null")
     @Column(name = "fourth_number")
-    private Integer fourthNumber;
+    private String fourthNumber;
 
     @NotNull(message = "must not be null")
     @Column(name = "fifth_number")
-    private Integer fifthNumber;
+    private String fifthNumber;
 
     @NotNull(message = "must not be null")
     @Column(name = "sixth_number")
-    private Integer sixthNumber;
+    private String sixthNumber;
 
     @NotNull(message = "must not be null")
     @Column(name = "seventh_number")
-    private Integer seventhNumber;
+    private String seventhNumber;
+
+    @NotNull(message = "must not be null")
+    @Column(name = "type")
+    private String type;
+
+    @NotNull(message = "must not be null")
+    @Column(name = "gmt_lottery")
+    private Instant gmtLottery;
+
+    @NotNull(message = "must not be null")
+    @Column(name = "gmt_create", updatable = false)
+    private Instant gmtCreate = Instant.now();
 }

@@ -1,4 +1,4 @@
-package com.hong.fortune.repository.domin;
+package com.hong.fortune.repository.domain;
 
 import lombok.Data;
 import org.springframework.data.annotation.CreatedDate;
@@ -31,7 +31,7 @@ public class LotteryTicket implements Serializable {
      * 期号
      */
     @NotNull(message = "must not be null")
-    @Size(max = 256)
+    @Size(max = 64)
     @Column(name = "issue")
     private String issue;
 
@@ -44,25 +44,14 @@ public class LotteryTicket implements Serializable {
     private Boolean isFilling;
 
     /**
-     * 是否购买
+     * 几等奖
      */
-    @NotNull(message = "must not be null")
-    @Max(value = 4)
-    @Column(name = "is_buy")
-    private Boolean isBuy;
-
-    /**
-     * 是否中奖
-     */
-    @NotNull(message = "must not be null")
-    @Max(value = 4)
-    @Column(name = "is_win")
-    private Boolean isWin;
+    @Column(name = "level")
+    private String level;
 
     /**
      * 奖金
      */
-    @NotNull(message = "must not be null")
     @Column(name = "bonus")
     private Integer bonus;
 
@@ -85,7 +74,6 @@ public class LotteryTicket implements Serializable {
     /**
      * 开奖时间
      */
-    @NotNull(message = "must not be null")
     @Column(name = "gmt_lottery")
     private Instant gmtLottery;
 

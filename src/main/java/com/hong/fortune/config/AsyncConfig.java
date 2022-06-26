@@ -9,17 +9,12 @@ import java.util.concurrent.Executor;
  * @author Ahong
  */
 public class AsyncConfig {
-
-    private int corePoolSize = 10;
-    private int maxPoolSize = 200;
-    private int queueCapacity = 10;
-
     @Bean
     public Executor taskExecutor() {
         ThreadPoolTaskExecutor executor = new ThreadPoolTaskExecutor();
-        executor.setCorePoolSize(corePoolSize);
-        executor.setMaxPoolSize(maxPoolSize);
-        executor.setQueueCapacity(queueCapacity);
+        executor.setCorePoolSize(10);
+        executor.setMaxPoolSize(200);
+        executor.setQueueCapacity(10);
         executor.initialize();
         return executor;
     }

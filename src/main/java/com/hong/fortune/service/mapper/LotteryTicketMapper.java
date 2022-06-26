@@ -1,6 +1,6 @@
 package com.hong.fortune.service.mapper;
 
-import com.hong.fortune.repository.domin.LotteryTicket;
+import com.hong.fortune.repository.domain.LotteryTicket;
 import com.hong.fortune.service.dto.LotteryTicketDTO;
 import org.mapstruct.Mapper;
 
