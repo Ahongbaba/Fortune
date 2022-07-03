@@ -9,6 +9,8 @@ import com.hong.fortune.service.mapper.LotteryTicketMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 /**
  * 大乐透彩票
  *
@@ -31,15 +33,23 @@ public class LotteryTicketServiceImpl implements LotteryTicketService {
     }
 
     @Override
-    public void updateLastTicket(String issue, String level, Integer bonus, Integer status) {
-        final LotteryTicket lotteryTicket = lotteryTicketRepository.findByIssue(issue).orElse(null);
+    public void updateLastTicket(Long id, String level, Integer bonus, Integer status) {
+        final LotteryTicket lotteryTicket = lotteryTicketRepository.findById(id).orElse(null);
         if (null == lotteryTicket) {
             throw new BadRequestAlertException(BadRequestAlertException.Type.F404);
         }
         lotteryTicket.setLevel(level);
         lotteryTicket.setBonus(bonus);
         lotteryTicket.setStatus(status);
+
         lotteryTicketRepository.save(lotteryTicket);
+    }
+
+    @Override
+    public List<LotteryTicketDTO> getTicketsByIssue(Integer issue) {
+        final List<LotteryTicket> lotteryTickets = lotteryTicketRepository.findByIssue(issue);
+
+        return lotteryTicketMapper.toDto(lotteryTickets);
     }
 
 }

@@ -5,7 +5,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 import org.springframework.stereotype.Repository;
 
-import java.util.Optional;
+import java.util.List;
 
 /**
  * 大乐透彩票
@@ -21,5 +21,5 @@ public interface LotteryTicketRepository extends JpaRepository<LotteryTicket, Lo
      * @param issue 期号
      * @return 详情
      */
-    Optional<LotteryTicket> findByIssue(String issue);
+    List<LotteryTicket> findByIssue(Integer issue);
 }

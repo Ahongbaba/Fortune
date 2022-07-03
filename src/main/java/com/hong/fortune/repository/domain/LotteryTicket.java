@@ -1,5 +1,6 @@
 package com.hong.fortune.repository.domain;
 
+import com.hong.fortune.enumeration.TicketGenerationType;
 import lombok.Data;
 import org.springframework.data.annotation.CreatedDate;
 
@@ -33,7 +34,7 @@ public class LotteryTicket implements Serializable {
     @NotNull(message = "must not be null")
     @Size(max = 64)
     @Column(name = "issue")
-    private String issue;
+    private Integer issue;
 
     /**
      * 是否加注
@@ -61,7 +62,7 @@ public class LotteryTicket implements Serializable {
     @NotNull(message = "must not be null")
     @Max(value = 6)
     @Column(name = "generation_type")
-    private Integer generationType;
+    private TicketGenerationType generationType;
 
     /**
      * 状态 1-待开奖 2-未中奖 3-已中奖
@@ -74,7 +75,6 @@ public class LotteryTicket implements Serializable {
     /**
      * 开奖时间
      */
-    @Column(name = "gmt_lottery")
     private Instant gmtLottery;
 
 

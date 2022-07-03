@@ -1,5 +1,7 @@
 package com.hong.fortune.repository.domain;
 
+import com.hong.fortune.common.converter.NumberConverter;
+import com.hong.fortune.enumeration.LotteryNumberType;
 import lombok.Data;
 
 import javax.persistence.*;
@@ -7,6 +9,7 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.io.Serializable;
 import java.time.Instant;
+import java.util.List;
 
 /**
  * 大乐透随机号码表
@@ -37,41 +40,22 @@ public class LotteryNumber implements Serializable {
     @NotNull(message = "must not be null")
     @Size(max = 64)
     @Column(name = "issue")
-    private String issue;
+    private Integer issue;
 
     @NotNull(message = "must not be null")
-    @Column(name = "first_number")
-    private String firstNumber;
+    @Convert(converter = NumberConverter.class)
+    @Column(name = "red_number")
+    private List<Integer> redNumber;
 
     @NotNull(message = "must not be null")
-    @Column(name = "second_number")
-    private String secondNumber;
-
-    @NotNull(message = "must not be null")
-    @Column(name = "third_number")
-    private String thirdNumber;
-
-    @NotNull(message = "must not be null")
-    @Column(name = "fourth_number")
-    private String fourthNumber;
-
-    @NotNull(message = "must not be null")
-    @Column(name = "fifth_number")
-    private String fifthNumber;
-
-    @NotNull(message = "must not be null")
-    @Column(name = "sixth_number")
-    private String sixthNumber;
-
-    @NotNull(message = "must not be null")
-    @Column(name = "seventh_number")
-    private String seventhNumber;
+    @Convert(converter = NumberConverter.class)
+    @Column(name = "blue_number")
+    private List<Integer> blueNumber;
 
     @NotNull(message = "must not be null")
     @Column(name = "type")
-    private String type;
+    private LotteryNumberType type;
 
-    @NotNull(message = "must not be null")
     @Column(name = "gmt_lottery")
     private Instant gmtLottery;
 

@@ -1,27 +1,23 @@
 package com.hong.fortune.service.dto;
 
 import lombok.AllArgsConstructor;
-import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.experimental.SuperBuilder;
 
 import java.time.Instant;
+import java.util.List;
 
 /**
  * @author Ahong
  */
 @Data
-@Builder
+@SuperBuilder
 @AllArgsConstructor
 @NoArgsConstructor
 public class LotteryGovDTO {
-    private String issue;
-    private String firstNumber;
-    private String secondNumber;
-    private String thirdNumber;
-    private String fourthNumber;
-    private String fifthNumber;
-    private String sixthNumber;
-    private String seventhNumber;
+    private Integer issue;
     private Instant gmtLottery;
+    private List<Integer> redNumber;
+    private List<Integer> blueNumber;
 }

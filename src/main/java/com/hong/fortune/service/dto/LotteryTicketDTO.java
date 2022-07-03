@@ -1,5 +1,6 @@
 package com.hong.fortune.service.dto;
 
+import com.hong.fortune.enumeration.TicketGenerationType;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -16,11 +17,11 @@ import java.time.Instant;
 @NoArgsConstructor
 public class LotteryTicketDTO {
     private Long id;
-    private String issue;
+    private Integer issue;
     private Boolean isFilling;
     private String level;
     private Integer bonus;
-    private Integer generationType;
+    private TicketGenerationType generationType;
     private Integer status;
     private Instant gmtLottery;
     private Instant gmtCreate;

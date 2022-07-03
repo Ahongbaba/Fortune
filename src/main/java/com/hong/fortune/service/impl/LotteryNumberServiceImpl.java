@@ -26,4 +26,11 @@ public class LotteryNumberServiceImpl implements LotteryNumberService {
         final List<LotteryNumber> lotteryNumbers = lotteryNumberMapper.toEntity(lotteryNumberDTOList);
         lotteryNumberRepository.saveAll(lotteryNumbers);
     }
+
+    @Override
+    public List<LotteryNumberDTO> getNumbersByTicketIds(List<Long> ticketIds) {
+        final List<LotteryNumber> lotteryNumbers = lotteryNumberRepository.findByLotteryTicketIdIn(ticketIds);
+
+        return lotteryNumberMapper.toDto(lotteryNumbers);
+    }
 }

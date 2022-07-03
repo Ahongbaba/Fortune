@@ -2,30 +2,26 @@ package com.hong.fortune.service.dto;
 
 import com.hong.fortune.enumeration.LotteryNumberType;
 import lombok.AllArgsConstructor;
-import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.experimental.SuperBuilder;
 
 import java.time.Instant;
+import java.util.List;
 
 /**
  * @author Ahong
  */
 @Data
-@Builder
+@SuperBuilder
 @AllArgsConstructor
 @NoArgsConstructor
 public class LotteryNumberDTO {
     private Long id;
     private Long lotteryTicketId;
-    private String issue;
-    private String firstNumber;
-    private String secondNumber;
-    private String thirdNumber;
-    private String fourthNumber;
-    private String fifthNumber;
-    private String sixthNumber;
-    private String seventhNumber;
+    private Integer issue;
+    private List<Integer> redNumber;
+    private List<Integer> blueNumber;
     private LotteryNumberType type;
     private Instant gmtLottery;
     private Instant gmtCreate;
@@ -33,13 +29,8 @@ public class LotteryNumberDTO {
     public static LotteryNumberDTO build(LotteryGovDTO dto) {
         return LotteryNumberDTO.builder()
                 .issue(dto.getIssue())
-                .firstNumber(dto.getFirstNumber())
-                .secondNumber(dto.getSecondNumber())
-                .thirdNumber(dto.getThirdNumber())
-                .fourthNumber(dto.getFourthNumber())
-                .fifthNumber(dto.getFifthNumber())
-                .sixthNumber(dto.getSixthNumber())
-                .seventhNumber(dto.getSeventhNumber())
+                .redNumber(dto.getRedNumber())
+                .blueNumber(dto.getBlueNumber())
                 .type(LotteryNumberType.WIN)
                 .gmtLottery(dto.getGmtLottery())
                 .build();

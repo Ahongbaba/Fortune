@@ -14,7 +14,14 @@ public interface LotteryNumberService {
      * 创建/修改号码
      *
      * @param lotteryNumberDTOList lotteryNumberDTOList
-     * @return 号码ID
      */
     void createOrModify(List<LotteryNumberDTO> lotteryNumberDTOList);
+
+    /**
+     * 获取号码 by 彩票IDs
+     * @param ticketIds 彩票ids
+     *
+     * @return 号码列表
+     */
+    List<LotteryNumberDTO> getNumbersByTicketIds(List<Long> ticketIds);
 }
