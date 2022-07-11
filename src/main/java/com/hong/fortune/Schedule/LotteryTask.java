@@ -14,8 +14,10 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.scheduling.annotation.EnableScheduling;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 
+import java.time.Instant;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -39,11 +41,17 @@ public class LotteryTask {
 
     private final CrawlerService crawlerService;
 
-    //    @Scheduled(cron = "0 0 22 ? 1-12 2,4,7 *")
+    @Scheduled(cron = "0 */1 * * * ?")
     public void getLastAndBuildCurrent() {
         log.info("lottoRandom time: {}", System.currentTimeMillis() / 1000);
         // 爬虫获取大乐透上期开奖数据
         final LotteryGovDTO lastLotteryGov = crawlerService.getLotteryGov();
+
+        // 检查中奖号码是否已经存入
+        final LotteryNumberDTO winNumber = lotteryNumberService.getNumbersByIssueAndType(lastLotteryGov.getIssue());
+        if (null != winNumber) {
+            return;
+        }
 
         // 保存上期中奖号码
         saveLastWinNumber(lastLotteryGov);
@@ -59,6 +67,7 @@ public class LotteryTask {
                 .isFilling(false) // TODO: 2022/7/3 等待开发加注
                 .generationType(TicketGenerationType.AUTO)
                 .status(TicketStatus.WAIT_LOTTERY.getCode())
+                .gmtCreate(Instant.now())
                 .build();
         final Long currentTicketId = lotteryTicketService.createOrModify(currentTicket);
         // 随机生成号码

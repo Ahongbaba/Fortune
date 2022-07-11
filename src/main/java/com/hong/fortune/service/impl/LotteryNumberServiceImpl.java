@@ -1,5 +1,6 @@
 package com.hong.fortune.service.impl;
 
+import com.hong.fortune.enumeration.LotteryNumberType;
 import com.hong.fortune.repository.LotteryNumberRepository;
 import com.hong.fortune.repository.domain.LotteryNumber;
 import com.hong.fortune.service.LotteryNumberService;
@@ -32,5 +33,12 @@ public class LotteryNumberServiceImpl implements LotteryNumberService {
         final List<LotteryNumber> lotteryNumbers = lotteryNumberRepository.findByLotteryTicketIdIn(ticketIds);
 
         return lotteryNumberMapper.toDto(lotteryNumbers);
+    }
+
+    @Override
+    public LotteryNumberDTO getNumbersByIssueAndType(Integer issue) {
+        final LotteryNumber lotteryNumber = lotteryNumberRepository.findByIssueAndType(issue, LotteryNumberType.WIN);
+
+        return lotteryNumberMapper.toDto(lotteryNumber);
     }
 }

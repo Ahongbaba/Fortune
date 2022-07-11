@@ -24,4 +24,12 @@ public interface LotteryNumberService {
      * @return 号码列表
      */
     List<LotteryNumberDTO> getNumbersByTicketIds(List<Long> ticketIds);
+
+    /**
+     * 获取中奖号码，用于检查是否已经记录过中奖号
+     *
+     * @param issue 期号
+     * @return 中奖号码
+     */
+    LotteryNumberDTO getNumbersByIssueAndType(Integer issue);
 }

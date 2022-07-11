@@ -6,7 +6,6 @@ import lombok.Data;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
 import java.io.Serializable;
 import java.time.Instant;
 import java.util.List;
@@ -38,7 +37,6 @@ public class LotteryNumber implements Serializable {
      * 期号
      */
     @NotNull(message = "must not be null")
-    @Size(max = 64)
     @Column(name = "issue")
     private Integer issue;
 

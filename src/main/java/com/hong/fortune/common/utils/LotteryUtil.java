@@ -5,6 +5,7 @@ import com.hong.fortune.enumeration.LotteryNumberType;
 import com.hong.fortune.enumeration.TicketStatus;
 import com.hong.fortune.service.dto.LotteryNumberDTO;
 
+import java.time.Instant;
 import java.util.*;
 
 /**
@@ -119,6 +120,7 @@ public class LotteryUtil {
                     .redNumber(redNumber)
                     .blueNumber(blueNumber)
                     .type(LotteryNumberType.AUTO)
+                    .gmtCreate(Instant.now())
                     .build();
             currentNumbers.add(currentNumber);
         }

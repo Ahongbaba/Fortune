@@ -32,7 +32,7 @@ public class LotteryNumberDTO {
                 .redNumber(dto.getRedNumber())
                 .blueNumber(dto.getBlueNumber())
                 .type(LotteryNumberType.WIN)
-                .gmtLottery(dto.getGmtLottery())
+                .gmtCreate(Instant.now())
                 .build();
     }
 }

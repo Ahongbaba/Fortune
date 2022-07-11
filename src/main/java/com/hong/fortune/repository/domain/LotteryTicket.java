@@ -7,7 +7,6 @@ import org.springframework.data.annotation.CreatedDate;
 import javax.persistence.*;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
 import java.io.Serializable;
 import java.time.Instant;
 
@@ -32,7 +31,6 @@ public class LotteryTicket implements Serializable {
      * 期号
      */
     @NotNull(message = "must not be null")
-    @Size(max = 64)
     @Column(name = "issue")
     private Integer issue;
 
@@ -40,7 +38,6 @@ public class LotteryTicket implements Serializable {
      * 是否加注
      */
     @NotNull(message = "must not be null")
-    @Max(value = 4)
     @Column(name = "is_filling")
     private Boolean isFilling;
 
@@ -60,7 +57,6 @@ public class LotteryTicket implements Serializable {
      * 出票方式 1-自动 2-手动
      */
     @NotNull(message = "must not be null")
-    @Max(value = 6)
     @Column(name = "generation_type")
     private TicketGenerationType generationType;
 
